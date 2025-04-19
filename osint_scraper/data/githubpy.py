@@ -43,35 +43,24 @@ ApiNotFoundError: https://api.github.com/users/github-not-exist-user/followers
 '''
 
 __version__ = '1.1.1'
-
-try:
-    # Python 2
-    from urllib2 import build_opener, HTTPSHandler, Request, HTTPError
-    from urllib import quote as urlquote
-    from StringIO import StringIO
-
-    def bytes(string, encoding=None):
-        """."""
-        return str(string)
-except:
-    # Python 3
-    from urllib.request import build_opener, HTTPSHandler, HTTPError, Request
-    from urllib.parse import quote as urlquote
-    from io import StringIO
-
+from urllib.request import build_opener, HTTPSHandler, Request
+from urllib.error import HTTPError
+from urllib.parse import quote as urlquote
+from io import StringIO
 import re, os, time, hmac, base64, hashlib, urllib, mimetypes, json
-from collections import Iterable
+from collections.abc import Iterable
 from datetime import datetime, timedelta, tzinfo
 
 TIMEOUT = 60
 
 _URL = 'https://api.github.com'
 _METHOD_MAP = dict(
-        GET=lambda: 'GET',
-        PUT=lambda: 'PUT',
-        POST=lambda: 'POST',
-        PATCH=lambda: 'PATCH',
-        DELETE=lambda: 'DELETE')
+    GET=lambda: 'GET',
+    PUT=lambda: 'PUT',
+    POST=lambda: 'POST',
+    PATCH=lambda: 'PATCH',
+    DELETE=lambda: 'DELETE'
+)
 
 DEFAULT_SCOPE = None
 RW_SCOPE = 'user,public_repo,repo,repo:status,gist'
@@ -85,7 +74,7 @@ def _encode_params(kw):
     for k, v in kw.items():
         try:
             # Python 2
-            qv = v.encode('utf-8') if isinstance(v, unicode) else str(v)
+            qv = v.encode('utf-8') if isinstance(v, str) else str(v)
         except:
             qv = v
         args.append('%s=%s' % (k, urlquote(qv)))
@@ -307,3 +296,4 @@ class ApiNotFoundError(ApiError):
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+
