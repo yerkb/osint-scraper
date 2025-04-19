@@ -1,0 +1,9 @@
+- @azure Rule - Use Azure Best Practices: When generating code for Azure, running terminal commands for Azure, or performing operations related to Azure, invoke your `azure_development-get_best_practices` tool if available.
+- Ensure all Azure-related scripts are tested in a sandbox environment before deployment to production.
+- Use Azure Resource Manager (ARM) templates or Bicep for infrastructure as code to ensure consistency and repeatability.
+- Follow Azure's security best practices, including enabling Azure Security Center and configuring role-based access control (RBAC) appropriately.
+- Regularly review and update Azure resources to align with the latest best practices and cost optimization strategies.
+- Use Azure Monitor and Application Insights for logging and performance monitoring of deployed applications.
+- Encrypt sensitive data using Azure Key Vault and ensure compliance with data protection regulations.
+- Leverage Azure DevOps for CI/CD pipelines to automate deployments and maintain version control.
+- Document all Azure configurations and processes for team collaboration and future reference.
